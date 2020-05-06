@@ -517,24 +517,24 @@ instances:
       - DefaultSG
       - OpenEverythingSG
 
-  - name: "nbde"
-    count: 3
-    # TODO: enable when we have a solution for number of maximum public IP address. Which is 5 currently in AWS
-    public_dns: false
-    dns_loadbalancer: false
-    image: "{{ nbde_instance_image }}"
-    flavor:
-      ec2: "t2.medium"
-      azure: Standard_A2_V2
-    security_groups:
-      - OpenNBDESG
-    tags:
-      - key: "AnsibleGroup"
-        value: "nbde"
-      - key: "ostype"
-        value: "linux"
-      - key: "instance_filter"
-        value: "{{ env_type }}-{{ email }}"
+  # - name: "nbde"
+  #   count: 3
+  #   # TODO: enable when we have a solution for number of maximum public IP address. Which is 5 currently in AWS
+  #   public_dns: false
+  #   dns_loadbalancer: false
+  #   image: "{{ nbde_instance_image }}"
+  #   flavor:
+  #     ec2: "t2.medium"
+  #     azure: Standard_A2_V2
+  #   security_groups:
+  #     - OpenNBDESG
+  #   tags:
+  #     - key: "AnsibleGroup"
+  #       value: "nbde"
+  #     - key: "ostype"
+  #       value: "linux"
+  #     - key: "instance_filter"
+  #       value: "{{ env_type }}-{{ email }}"
 
 # DNS settings for environmnet
 subdomain_base_short: "{{ guid }}"
