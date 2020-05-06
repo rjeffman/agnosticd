@@ -5,7 +5,7 @@
 #
 # Ideally keep your copy OUTSIDE your repo, especially if using Cloud Credentials
 
-env_type: rhel-container-security       # Name of config to deploy
+env_type: rhel-security       # Name of config to deploy
 output_dir: /tmp/workdir                # Writable working scratch directory
 node_instance_count: 2                  # Number of nodes to deploy
 email: name@example.com                 # User info for notifications
