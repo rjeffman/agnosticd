@@ -500,22 +500,22 @@ instances:
       - DefaultSG
       - OpenEverythingSG
 
-  - name: "rhel7selinux"
-    count: 2
-    public_dns: false
-    dns_loadbalancer: false
-    image: "{{ node7_instance_image }}"
-    flavor: "{{ node_instance_type }}"
-    tags:
-      - key: "AnsibleGroup"
-        value: "rhel7selinux"
-      - key: "ostype"
-        value: "linux"
-      - key: "instance_filter"
-        value: "{{ env_type }}-{{ email }}"
-    security_groups:
-      - DefaultSG
-      - OpenEverythingSG
+  # - name: "rhel7selinux"
+  #   count: 2
+  #   public_dns: false
+  #   dns_loadbalancer: false
+  #   image: "{{ node7_instance_image }}"
+  #   flavor: "{{ node_instance_type }}"
+  #   tags:
+  #     - key: "AnsibleGroup"
+  #       value: "rhel7selinux"
+  #     - key: "ostype"
+  #       value: "linux"
+  #     - key: "instance_filter"
+  #       value: "{{ env_type }}-{{ email }}"
+  #   security_groups:
+  #     - DefaultSG
+  #     - OpenEverythingSG
 
   # - name: "nbde"
   #   count: 3
