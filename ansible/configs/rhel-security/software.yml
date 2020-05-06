@@ -26,8 +26,6 @@
   hosts: aide
   become: yes
   tasks:
-    - import_tasks: fix-authorized_keys.yml
-
     - name: Setup AIDE
       import_tasks: aide.yml
 
@@ -35,8 +33,6 @@
   hosts: gpg
   become: yes
   tasks:
-    - import_tasks: fix-authorized_keys.yml
-
     - name: Setup GPG
       import_tasks: gpg.yml
 
@@ -44,8 +40,6 @@
   hosts: audit
   become: yes
   tasks:
-    - import_tasks: fix-authorized_keys.yml
-
     - name: Setup AUDIT
       import_tasks: audit.yml
 
@@ -53,8 +47,6 @@
   hosts: firewalld
   become: yes
   tasks:
-    - import_tasks: fix-authorized_keys.yml
-
     - name: Setup firewalld
       import_tasks: firewalld.yml
 
@@ -62,7 +54,6 @@
   hosts: ipsec
   become: yes
   tasks:
-    - import_tasks: fix-authorized_keys.yml
     - name: Setup IPSEC
       import_tasks: ipsec.yml
 
@@ -73,8 +64,6 @@
   hosts: cryptopolicies
   become: yes
   tasks:
-    - import_tasks: fix-authorized_keys.yml
-
     - name: Setup Crypto Policies
       import_tasks: crypto.yml
 
@@ -82,8 +71,6 @@
   hosts: sessionrecording
   become: yes
   tasks:
-    - import_tasks: fix-authorized_keys.yml
-
     - name: Setup Session Recording
       import_tasks: sessionrecording.yml
 
@@ -91,8 +78,6 @@
   hosts: rhel8selinux1.*
   become: yes
   tasks:
-    - import_tasks: fix-authorized_keys.yml
-
     - name: SELinux selinux1 host
       import_tasks: selinux1.yml
 
@@ -100,8 +85,6 @@
   hosts: rhel8selinux2.*
   become: yes
   tasks:
-    - import_tasks: fix-authorized_keys.yml
-
     - name: SELinux selinux2 host
       import_tasks: selinux23.yml
 
@@ -109,8 +92,6 @@
   hosts: rhel7selinux1.*
   become: yes
   tasks:
-    - import_tasks: fix-authorized_keys.yml
-
     - name: SELinux rhel7selinux1 host
       import_tasks: selinux1.yml
 
@@ -118,8 +99,6 @@
   hosts: rhel7selinux2.*
   become: yes
   tasks:
-    - import_tasks: fix-authorized_keys.yml
-
     - name: SELinux rhel7selinux2 host
       import_tasks: selinux4.yml
 
