@@ -68,9 +68,9 @@
 
     - name: Mark Gnome initial setup as done
       become: yes
-      become_user: "{{ remote_user }}"
+      become_user: "{{ student_name }}"
       lineinfile:
-        dest: /home/{{ remote_user }}/.config/gnome-initial-setup-done
+        dest: /home/{{ student_name }}/.config/gnome-initial-setup-done
         state: present
         regexp: '^yes$'
         line: 'yes'
@@ -78,7 +78,7 @@
 
     - name: Disable Gnome screen locking
       become: yes
-      become_user: "{{ remote_user }}"
+      become_user: "{{ student_name }}"
       dconf:
         key: "/org/gnome/desktop/screensaver/lock-enabled"
         value: "false"
@@ -86,7 +86,7 @@
 
     - name: Disable Gnome screensaver
       become: yes
-      become_user: "{{ remote_user }}"
+      become_user: "{{ student_name }}"
       dconf:
         key: "/org/gnome/desktop/session/idle-delay"
         value: "uint32 0"

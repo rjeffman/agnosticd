@@ -23,6 +23,10 @@ aws_region: us-east-1                   # AWS Region to deploy in
 HostedZoneId: Z3IHLWJZOU9SRT            # You will need to change this
 key_name: ocpkey                        # Keyname must exist in AWS
 
+# This should be overwritten based on the user ordering the catalog item
+# It will be used by the bastion-student-user role and created on the bastion
+student_name: lab-user
+
 # AWS Credentials. These are required (don't sync them to your fork)
 # aws_access_key_id: 
 # aws_secret_access_key: 
