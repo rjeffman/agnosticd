@@ -38,6 +38,15 @@
   tags:
     - bastion_tasks
 
+- name: Creating Student user on OpenSCAPP and IDM Server
+  hosts:
+    - openscap
+    - idmserver
+  become: true
+  gather_facts: False
+  roles:
+    - { role: "bastion-student-user" }
+
 - name: PreSoftware flight-check
   hosts: localhost
   connection: local
