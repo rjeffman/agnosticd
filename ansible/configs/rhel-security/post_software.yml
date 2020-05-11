@@ -15,6 +15,7 @@
           OPENSCAP_IP_ADDRESS: "{{ hostvars[groups.openscap.0].public_ip_address }}"
           IDMSERVER_PASSWORD: "{{ hostvars[groups.idmserver.0].student_password }}"
           IDMSERVER_IP_ADDRESS: "{{ hostvars[groups.idmserver.0].public_ip_address }}"
+          GUID: "{{ guid }}"
           # GROUPS: "{{ groups }}"
 
 - name: Verify playbook execution
