@@ -5,7 +5,7 @@
 #
 # Ideally keep your copy OUTSIDE your repo, especially if using Cloud Credentials
 
-env_type: rhel-container-security       # Name of config to deploy
+env_type: rhel-security       # Name of config to deploy
 output_dir: /tmp/workdir                # Writable working scratch directory
 node_instance_count: 2                  # Number of nodes to deploy
 email: name@example.com                 # User info for notifications
@@ -22,6 +22,10 @@ cloud_provider: ec2                     # Which AgnosticD Cloud Provider to use
 aws_region: us-east-1                   # AWS Region to deploy in
 HostedZoneId: Z3IHLWJZOU9SRT            # You will need to change this
 key_name: ocpkey                        # Keyname must exist in AWS
+
+# This should be overwritten based on the user ordering the catalog item
+# It will be used by the bastion-student-user role and created on the bastion
+student_name: ec2-user
 
 # AWS Credentials. These are required (don't sync them to your fork)
 # aws_access_key_id: 
