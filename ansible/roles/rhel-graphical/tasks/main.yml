@@ -39,15 +39,15 @@
         state: present
       when: not cloud_access
   
-#     - name: Install XRDP server and dependencies
-#       yum:
-#         name:
-#         - "xrdp"
-#         - "xrdp-selinux"
-#         - "xorgxrdp"
-# #        disablerepo: "*"
-#         enablerepo: "epel"
-#         state: present
+    - name: Install XRDP server and dependencies
+      yum:
+        name:
+        - "xrdp"
+        - "xrdp-selinux"
+        - "xorgxrdp"
+#        disablerepo: "*"
+        enablerepo: "epel"
+        state: present
 
     when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '7'
 
@@ -86,26 +86,26 @@
         - coreutils
         - wget
 
-#     # xrdp-selinux requires selinux-policy and newer versions of this
-#     # package in EPEL require newer selinux-policy which is not available
-#     # on RHEL8.1
-#     - name: Override EPEL repository with RHEL8.1 one
-#       yum_repository:
-#         name: epel
-#         description: EPEL YUM repo
-#         baseurl: https://archives.fedoraproject.org/pub/archive/epel/8.1/Everything/$basearch/
-#         enabled: no
-#       when: ansible_distribution_version == '8.1'
+    # xrdp-selinux requires selinux-policy and newer versions of this
+    # package in EPEL require newer selinux-policy which is not available
+    # on RHEL8.1
+    - name: Override EPEL repository with RHEL8.1 one
+      yum_repository:
+        name: epel
+        description: EPEL YUM repo
+        baseurl: https://archives.fedoraproject.org/pub/archive/epel/8.1/Everything/$basearch/
+        enabled: no
+      when: ansible_distribution_version == '8.1'
   
-#     - name: Install XRDP server and dependencies
-#       yum:
-#         name:
-#         - "xrdp"
-#         - "xrdp-selinux"
-#         - "xorgxrdp"
-# #        disablerepo: "*"
-#         enablerepo: "epel"
-#         state: present
+    - name: Install XRDP server and dependencies
+      yum:
+        name:
+        - "xrdp"
+        - "xrdp-selinux"
+        - "xorgxrdp"
+#        disablerepo: "*"
+        enablerepo: "epel"
+        state: present
 
 # Commented out due to the addition of Xrdp/xorgxdp to EPEL 8
 #    - name: Install build tools and headers
@@ -193,77 +193,77 @@
 
     when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '8'
 
-  # - name: Install xrdp configuration
-  #   copy:
-  #     dest: "/etc/xrdp/xrdp.ini"
-  #     src: "xrdp.ini"
-  #     mode: 0644
+  - name: Install xrdp configuration
+    copy:
+      dest: "/etc/xrdp/xrdp.ini"
+      src: "xrdp.ini"
+      mode: 0644
 
-  # - name: Create SELinux dir
-  #   file:
-  #     group: users
-  #     owner: "{{ student_name }}"
-  #     mode:  0700
-  #     path:  "/home/{{ student_name }}/.selinux"
-  #     state: directory
+  - name: Create SELinux dir
+    file:
+      group: users
+      owner: "{{ student_name }}"
+      mode:  0700
+      path:  "/home/{{ student_name }}/.selinux"
+      state: directory
 
-  # - name: Copy over SELinux modules for colord
-  #   copy:
-  #     src:   "{{ item }}"
-  #     dest:  "/home/{{ student_name }}/.selinux"
-  #     group: users
-  #     owner: "{{ student_name }}"
-  #     mode:  0600
-  #   with_items:
-  #     - colord-add.pp
-  #     - colord-add.te
-  #   register: result
+  - name: Copy over SELinux modules for colord
+    copy:
+      src:   "{{ item }}"
+      dest:  "/home/{{ student_name }}/.selinux"
+      group: users
+      owner: "{{ student_name }}"
+      mode:  0600
+    with_items:
+      - colord-add.pp
+      - colord-add.te
+    register: result
 
-  # - name: Copy over polikt config for colord
-  #   copy:
-  #     src:   "02-allow-colord.rules"
-  #     dest:  "/etc/polkit-1/rules.d/02-allow-colord.rules"
-  #     group: "root"
-  #     owner: "root"
-  #     mode:  0644
+  - name: Copy over polikt config for colord
+    copy:
+      src:   "02-allow-colord.rules"
+      dest:  "/etc/polkit-1/rules.d/02-allow-colord.rules"
+      group: "root"
+      owner: "root"
+      mode:  0644
 
-  # - name: Update SELinux for colord
-  #   command: semodule -i colord-add.pp chdir=/home/{{ student_name }}/.selinux
-  #   notify: colord
-  #   when: result.changed
+  - name: Update SELinux for colord
+    command: semodule -i colord-add.pp chdir=/home/{{ student_name }}/.selinux
+    notify: colord
+    when: result.changed
 
-  # - when: ansible_facts.packages["firewalld"] is defined
-  #   block:
+  - when: ansible_facts.packages["firewalld"] is defined
+    block:
   
-  #   - name: open XRDP port in firewalld (permanent)
-  #     firewalld:
-  #       port: "3389/tcp"
-  #       state: enabled
-  #       permanent: yes
+    - name: open XRDP port in firewalld (permanent)
+      firewalld:
+        port: "3389/tcp"
+        state: enabled
+        permanent: yes
   
-  #   - name: open XRDP port in firewalld (immediate)
-  #     firewalld:
-  #       port: "3389/tcp"
-  #       state: enabled
-  #       immediate: yes
-  #     when: ansible_facts.services["firewalld.service"].state == "running"
+    - name: open XRDP port in firewalld (immediate)
+      firewalld:
+        port: "3389/tcp"
+        state: enabled
+        immediate: yes
+      when: ansible_facts.services["firewalld.service"].state == "running"
     
-  # - when: ansible_facts.packages["firewalld"] is undefined
-  #   block:
+  - when: ansible_facts.packages["firewalld"] is undefined
+    block:
 
-  #   - name: open XRDP port in iptables
-  #     iptables:
-  #       chain: INPUT
-  #       protocol: tcp
-  #       destination_port: 3389
-  #       jump: ACCEPT
-  #     when: ansible_facts.services["firewalld.service"].state == "running"
+    - name: open XRDP port in iptables
+      iptables:
+        chain: INPUT
+        protocol: tcp
+        destination_port: 3389
+        jump: ACCEPT
+      when: ansible_facts.services["firewalld.service"].state == "running"
 
-  # - name: Enable XRDP auto-start
-  #   service:
-  #     name: "xrdp"
-  #     enabled: "yes"
-  #     state: started
+  - name: Enable XRDP auto-start
+    service:
+      name: "xrdp"
+      enabled: "yes"
+      state: started
 
   - name: Configure TigerVNC server service
     command: "cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@.service"
