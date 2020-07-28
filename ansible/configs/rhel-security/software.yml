@@ -102,8 +102,8 @@
 #     - name: SELinux rhel7selinux2 host
 #       import_tasks: selinux4.yml
 
-# - name: Configure NBDE lab
-#   import_playbook: nbde.yml
+- name: Configure NBDE lab
+  import_playbook: nbde.yml
 
 - name: Software flight-check
   hosts: localhost
