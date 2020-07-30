@@ -23,13 +23,13 @@
   import_tasks: ipsec-verify.yml
   when: inventory_hostname_short == "ipsec2"
 
-# - name: Verify idm and clients on node idm1
-#   import_tasks: idm-verify.yml
-#   when: inventory_hostname_short == "idm1"
+- name: Verify idm and clients on node idm1
+  import_tasks: idm-verify.yml
+  when: inventory_hostname_short == "idm1"
 
-# - name: Verify idm and clients on node idm2
-#   import_tasks: idm-verify.yml
-#   when: inventory_hostname_short == "idm2"
+- name: Verify idm and clients on node idm2
+  import_tasks: idm-verify.yml
+  when: inventory_hostname_short == "idm2"
 
 - name: Verify crypto on RHEL 8 on node cryptopolicies
   import_tasks: crypto-verify.yml

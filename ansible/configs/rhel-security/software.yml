@@ -10,7 +10,7 @@
 - name: Configure graphical mode for OpenSCAP and IdM
   hosts:
     - openscap
-    # - idmserver
+    - idmserver
   become: true
   roles:
     - role: rhel-graphical
@@ -57,8 +57,8 @@
     - name: Setup IPSEC
       import_tasks: ipsec.yml
 
-# - name: Configure IdM
-#   import_playbook: idm.yml
+- name: Configure IdM
+  import_playbook: idm.yml
 
 - name: Configure Crypto Policies
   hosts: cryptopolicies
