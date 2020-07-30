@@ -24,3 +24,9 @@
     name: q
     password: $6$CMxicOHc/rbTt9R5$fQYehgVLhm2hLmm7UpfeJ6t6sk5pGxexufgUU9xfkx6mRkwdhi7agjh85M4QMdk71bukeEUV3iASL8P18Anhb1
     state: present
+
+- name: Allow passwordless sudo for user q
+  lineinfile:
+    path: '/etc/sudoers'
+    state: present
+    line: "q         ALL=(ALL)       NOPASSWD: ALL"
