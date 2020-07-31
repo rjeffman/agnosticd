@@ -468,7 +468,7 @@ instances:
   - name: "sessionrecording"
     count: 1
     unique: true
-    public_dns: false
+    public_dns: true
     dns_loadbalancer: false
     image: "{{ node_instance_image }}"
     flavor: "{{ node_instance_type }}"
