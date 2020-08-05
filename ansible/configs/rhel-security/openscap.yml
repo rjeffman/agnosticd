@@ -8,6 +8,7 @@
     - firefox
     - ansible
     - python3-psutil # requirement for ansible dconf module
+    - nano
     state: present
 
 - name: Mark Gnome initial setup as done
