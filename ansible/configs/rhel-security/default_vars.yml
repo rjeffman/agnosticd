@@ -316,46 +316,46 @@ instances:
       - RemoteDesktopRDPSG
       - RemoteDesktopVNCSG
 
-  - name: "idmserver"
-    count: 1
-    unique: true
-    public_dns: true
-    dns_loadbalancer: false
-    image: "{{ bastion_instance_image }}"
-    flavor: "{{ bastion_instance_type }}"
-    tags:
-      - key: "AnsibleGroup"
-        value: "idmserver"
-      - key: "ostype"
-        value: "linux"
-      - key: "instance_filter"
-        value: "{{ env_type }}-{{ email }}"
-    volumes:
-      - name: '/dev/sda1'
-        size: 20
-    security_groups:
-      - BastionSG
-      - OpenIdMports
-      - OpenEverythingSG
-      - RemoteDesktopRDPSG
-      - RemoteDesktopVNCSG
+  # - name: "idmserver"
+  #   count: 1
+  #   unique: true
+  #   public_dns: true
+  #   dns_loadbalancer: false
+  #   image: "{{ bastion_instance_image }}"
+  #   flavor: "{{ bastion_instance_type }}"
+  #   tags:
+  #     - key: "AnsibleGroup"
+  #       value: "idmserver"
+  #     - key: "ostype"
+  #       value: "linux"
+  #     - key: "instance_filter"
+  #       value: "{{ env_type }}-{{ email }}"
+  #   volumes:
+  #     - name: '/dev/sda1'
+  #       size: 20
+  #   security_groups:
+  #     - BastionSG
+  #     - OpenIdMports
+  #     - OpenEverythingSG
+  #     - RemoteDesktopRDPSG
+  #     - RemoteDesktopVNCSG
 
-  - name: "idm"
-    count: 2
-    public_dns: false
-    dns_loadbalancer: false
-    image: "{{ node_instance_image }}"
-    flavor: "{{ node_instance_type }}"
-    tags:
-      - key: "AnsibleGroup"
-        value: "idm"
-      - key: "ostype"
-        value: "linux"
-      - key: "instance_filter"
-        value: "{{ env_type }}-{{ email }}"
-    security_groups:
-      - DefaultSG
-      - OpenEverythingSG
+  # - name: "idm"
+  #   count: 2
+  #   public_dns: false
+  #   dns_loadbalancer: false
+  #   image: "{{ node_instance_image }}"
+  #   flavor: "{{ node_instance_type }}"
+  #   tags:
+  #     - key: "AnsibleGroup"
+  #       value: "idm"
+  #     - key: "ostype"
+  #       value: "linux"
+  #     - key: "instance_filter"
+  #       value: "{{ env_type }}-{{ email }}"
+  #   security_groups:
+  #     - DefaultSG
+  #     - OpenEverythingSG
 
   - name: "aide"
     count: 1
