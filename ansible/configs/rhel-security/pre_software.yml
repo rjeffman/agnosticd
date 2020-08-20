@@ -38,10 +38,10 @@
   tags:
     - bastion_tasks
 
-- name: Creating Student user on OpenSCAPP and IDM Server
+- name: Creating Student user on OpenSCAP # and IDM Server
   hosts:
     - openscap
-    - idmserver
+    # - idmserver
   become: true
   gather_facts: False
   roles:
