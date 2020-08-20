@@ -14,6 +14,10 @@
       delegate_to: "{{ item }}"
       with_items: "{{ groups.all }}"
 
+    - name: idmserver DNS name
+      debug:
+        msg: "{{ node_dns_name }}"
+
 - name: Set IPA server variables
   hosts: idmserver
   become: yes
@@ -31,6 +35,10 @@
   hosts: idm
   become: yes
   tasks:
+    - name: Enrolling to idmserver...
+      debug:
+        msg: "{{ node_dns_name }}"
+
     - name: Set variables.
       set_fact:
         ipaserver_domain: example.com
